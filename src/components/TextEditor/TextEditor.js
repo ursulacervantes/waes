@@ -6,7 +6,7 @@ import ColorPicker from '../ColorPicker';
 const TextEditor = props => {
   return (
     <div>
-      <ColorPicker></ColorPicker>
+      <ColorPicker singlePick={true}></ColorPicker>
       Text Editor Component
       <Form>
         <Form.Group controlId="exampleForm.ControlTextarea1">
