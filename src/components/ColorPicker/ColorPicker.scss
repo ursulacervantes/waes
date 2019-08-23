@@ -1,0 +1,40 @@
+@import 'bootstrap';
+@import '../../variables';
+
+.button {
+  margin-right: 5px;
+  padding: 0.75rem 1.125rem !important;
+}
+
+.red {
+  @include button-variant(
+    $red,
+    darken($red, 7.5%),
+    darken($red, 10%),
+    lighten($red, 5%),
+    lighten($red, 10%),
+    darken($red, 30%)
+  );
+}
+
+.yellow {
+  @include button-variant(
+    $yellow,
+    darken($yellow, 7.5%),
+    darken($yellow, 10%),
+    lighten($yellow, 5%),
+    lighten($yellow, 10%),
+    darken($yellow, 30%)
+  );
+}
+
+.green {
+  @include button-variant(
+    $green,
+    darken($green, 7.5%),
+    darken($green, 10%),
+    lighten($green, 5%),
+    lighten($green, 10%),
+    darken($green, 30%)
+  );
+}

@@ -1,17 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import TextEditor from './components/TextEditor';
+import TextFilter from './components/TextFilter';
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Initial Commit
-        </p>
+    <div className="App mt-3">
+      <Container>
+        <Row className="justify-content-md-center">
+          <Col xs lg="8">
+            <TextEditor></TextEditor>
+          </Col>
+        </Row>
 
-      </header>
+        <Row className="justify-content-md-center">
+          <Col xs lg="8">
+            <TextFilter></TextFilter>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
