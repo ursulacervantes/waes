@@ -1,42 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Button from 'react-bootstrap/Button';
 
 import './ColorPicker.scss';
+import { selectColor } from '../../actions/index';
 
 const ColorPicker = props => {
-  const [colors, setStatus] = useState([
-    {
-      color: 'red',
-      status: ''
-    },
-    {
-      color: 'yellow',
-      status: ''
-    },
-    {
-      color: 'green',
-      status: ''
-    }
-  ]);
+  let colorList = useSelector(state => state.color[props.colorId]);
+  const dispatch = useDispatch();
 
   const handleChange = color => {
-    setStatus(currentColor => {
-      return currentColor.map(val => {
-        if (props.singlePick) {
-          if (val.color !== color) {
-            val.status = '';
-          }
-        }
-
-        if (val.color === color) {
-          val.status = val.status === 'focus' ? '' : 'focus';
-        }
-
-        return val;
-      });
-    });
+    dispatch(selectColor(color, props.singlePick, props.colorId));
   };
 
   const onMouseDown = e => {
@@ -46,7 +22,7 @@ const ColorPicker = props => {
   return (
     <div>
       <ButtonToolbar>
-        {colors.map((item, key) => (
+        {colorList.map((item, key) => (
           <Button
             type="button"
             key={item.color}
