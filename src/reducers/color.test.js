@@ -32,10 +32,6 @@ const initialState = {
   ]
 };
 
-afterEach(() => {
-  color(undefined, {});
-});
-
 describe('color reducer', () => {
   it('should return the initial state', () => {
     expect(color(undefined, {})).toEqual(initialState);

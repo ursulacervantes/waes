@@ -13,6 +13,13 @@ const ColorPicker = props => {
 
   const handleChange = color => {
     dispatch(selectColor(color, props.singlePick, props.colorId));
+
+    props.setColor(
+      colorList.reduce((list, e) => {
+        if (e.status === 'focus') list.push(e.color);
+        return list;
+      }, [])
+    ); //reduce to list color
   };
 
   const onMouseDown = e => {
