@@ -72,14 +72,14 @@ const TextEditor = props => {
     }
   };
 
-  const onScroll = e => {
+  const handleScroll = e => {
     const scrollTop = e.target.scrollTop;
     const scrollLeft = e.target.scrollLeft;
 
     backdrop.current.scrollTo(scrollLeft, scrollTop);
   };
 
-  const updateContent = e => {
+  const handleChange = e => {
     //If text is updated, we need to creat a new binaryIndexedTree and clear
     //current highlighted text
     bt = undefined;
@@ -109,8 +109,8 @@ const TextEditor = props => {
             col="30"
             className="editorTextarea"
             onSelect={e => selectText(e)}
-            onScroll={onScroll}
-            onChange={updateContent}
+            onScroll={handleScroll}
+            onChange={handleChange}
           />
         </Form.Group>
       </Form>

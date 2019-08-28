@@ -8,7 +8,7 @@ import './ColorPicker.scss';
 import { selectColor } from '../../actions/index';
 
 const ColorPicker = props => {
-  let colorList = useSelector(state => state.color[props.colorId]);
+  const colorList = useSelector(state => state.color[props.colorId]);
   const dispatch = useDispatch();
 
   const handleChange = color => {
@@ -22,7 +22,7 @@ const ColorPicker = props => {
     ); //reduce to list color
   };
 
-  const onMouseDown = e => {
+  const handleMouseDown = e => {
     e.preventDefault();
   };
 
@@ -35,7 +35,7 @@ const ColorPicker = props => {
             key={item.color}
             className={`button ${item.color} ${item.status}`}
             onClick={() => handleChange(item.color)}
-            onMouseDown={onMouseDown}
+            onMouseDown={handleMouseDown}
           ></Button>
         ))}
       </ButtonToolbar>

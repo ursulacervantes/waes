@@ -6,8 +6,6 @@ import Col from 'react-bootstrap/Col';
 import TextEditor from './components/TextEditor';
 import TextFilter from './components/TextFilter';
 
-import './App.css';
-
 function App() {
   return (
     <div className="App mt-3">

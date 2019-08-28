@@ -37,7 +37,7 @@ const TextFilter = props => {
   };
 
   //This is declared at the end because filterByColor needs to be declare first
-  let filteredText = useSelector(state => filterByColor(state.text));
+  const filteredText = useSelector(state => filterByColor(state.text));
 
   return (
     <div>
