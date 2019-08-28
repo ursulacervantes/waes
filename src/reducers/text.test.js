@@ -1,5 +1,5 @@
 import text from './text';
-import { ADD_TEXT, FILTER_TEXT } from '../actions/index';
+import { ADD_TEXT } from '../actions/index';
 
 const state = {
   red: {},
