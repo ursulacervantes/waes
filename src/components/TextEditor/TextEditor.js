@@ -6,25 +6,36 @@ import ColorPicker from '../ColorPicker';
 import './TextEditor.scss';
 
 import { addText } from '../../actions/index';
+import BinaryIndexedTree from '../../util/binaryIndexedTree';
 
 const ua = window.navigator.userAgent.toLowerCase();
 const isIE = !!ua.match(/msie|trident\/7|edge/);
 
-function applyHighlights(text, start, end, selection, color) {
-  text =
-    text.substr(0, start) +
+let bt;
+
+function applyHighlights(markup, text, start, end, selection, color) {
+  const range = bt.getRangeSum(0, start);
+
+  if (!markup) markup = text;
+
+  markup =
+    markup.substr(0, range + start) +
     '<mark class="h' +
     color +
     '">' +
     selection +
     '</mark>' +
-    text.substr(end);
+    markup.substr(range + end);
 
   if (isIE) {
     // IE wraps whitespace differently in a div vs textarea, this fixes it
     text = text.replace(/ /g, ' <wbr>');
   }
-  return text;
+
+  bt.set(start, ('<mark class="h' + color).length + 2);
+  bt.set(end, '</mark>'.length);
+
+  return markup;
 }
 
 const TextEditor = props => {
@@ -38,6 +49,8 @@ const TextEditor = props => {
     e.persist();
     if (!color.length) return;
 
+    if (!bt) bt = new BinaryIndexedTree(e.target.value.length + 1);
+
     const start = e.target.selectionStart;
     const end = e.target.selectionEnd;
 
@@ -47,7 +60,14 @@ const TextEditor = props => {
       dispatch(addText(color, selection, start));
 
       setHighlights(state => ({
-        __html: applyHighlights(e.target.value, start, end, selection, color)
+        __html: applyHighlights(
+          state.__html,
+          e.target.value,
+          start,
+          end,
+          selection,
+          color
+        )
       }));
     }
   };
