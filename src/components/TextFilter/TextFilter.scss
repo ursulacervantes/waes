@@ -1,0 +1,18 @@
+@import '../../variables';
+
+.filteredText {
+  margin-top: 16px;
+  min-height: 254px;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #eff0f1;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+mark.filter {
+  color: black;
+}

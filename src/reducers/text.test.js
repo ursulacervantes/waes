@@ -53,6 +53,27 @@ describe('color reducer', () => {
     });
   });
 
+  it('should add deplicated text', () => {
+    const action = {
+      type: ADD_TEXT,
+      color: 'yellow',
+      text: 'slap the dog because cats rule.',
+      position: 30
+    };
+    expect(text(state, action)).toEqual({
+      editor: {
+        red: {
+          'Catty ipsum need to chase tail spill litter box.': [10, 0]
+        },
+        yellow: {
+          'slap the dog because cats rule.': [30]
+        },
+        green: {}
+      },
+      filter: {}
+    });
+  });
+
   it('should filter text by red', () => {
     const action = {
       type: FILTER_TEXT,
@@ -63,7 +84,9 @@ describe('color reducer', () => {
         red: {
           'Catty ipsum need to chase tail spill litter box.': [10, 0]
         },
-        yellow: {},
+        yellow: {
+          'slap the dog because cats rule.': [30]
+        },
         green: {}
       },
       filter: {
@@ -91,7 +114,9 @@ describe('color reducer', () => {
         red: {
           'Catty ipsum need to chase tail spill litter box.': [10, 0]
         },
-        yellow: {},
+        yellow: {
+          'slap the dog because cats rule.': [30]
+        },
         green: {}
       },
       filter: {
@@ -103,6 +128,12 @@ describe('color reducer', () => {
           {
             position: 10,
             text: 'Catty ipsum need to chase tail spill litter box.'
+          }
+        ],
+        yellow: [
+          {
+            position: 30,
+            text: 'slap the dog because cats rule.'
           }
         ]
       }

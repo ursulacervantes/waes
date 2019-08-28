@@ -1,0 +1,58 @@
+@import '../../variables';
+
+.editorContainer {
+  height: 320px;
+  display: block;
+  margin: 0 auto;
+  transform: translateZ(0);
+  -webkit-text-size-adjust: none;
+}
+
+.backdrop {
+  position: absolute;
+  z-index: 1;
+  background-color: #fff;
+  overflow: auto;
+  pointer-events: none;
+  transition: transform 1s;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  text-align: start;
+}
+
+.highlights {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: transparent;
+}
+
+.editorTextarea {
+  display: block;
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  background-color: transparent;
+  overflow: auto;
+  resize: none;
+  transition: transform 1s;
+
+  &:focus {
+    background-color: transparent;
+  }
+}
+
+mark {
+  border-radius: 3px;
+  color: transparent;
+
+  &.hred {
+    background-color: $red;
+  }
+
+  &.hyellow {
+    background-color: $yellow;
+  }
+  &.hgreen {
+    background-color: $green;
+  }
+}

@@ -5,9 +5,10 @@ import Form from 'react-bootstrap/Form';
 import ColorPicker from '../ColorPicker';
 
 import { filterText } from '../../actions/index';
+import './TextFilter.scss';
 
 const TextFilter = props => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState({ __html: '' });
   let filteredText = useSelector(state => state.text);
 
   const dispatch = useDispatch();
@@ -15,16 +16,17 @@ const TextFilter = props => {
   const filterByColor = color => {
     dispatch(filterText(color));
 
-    setText(() => {
-      return Object.entries(filteredText.filter).reduce((obj, val) => {
-        const t = val[1].reduce((s, v) => {
-          s += v.text;
-          return s + '\r\n';
-        }, '');
-
-        return t + '\r\n';
+    const list = Object.entries(filteredText.filter).reduce((obj, val) => {
+      const [color, textList] = [val[0], val[1]];
+      const t = textList.reduce((s, v) => {
+        s += '<mark class="filter h' + color + '">' + v.text + '</mark>';
+        return s + '<br/>';
       }, '');
-    });
+
+      return obj + t + '<br/>';
+    }, '');
+
+    setText(() => ({ __html: list }));
   };
 
   return (
@@ -37,13 +39,7 @@ const TextFilter = props => {
 
       <Form>
         <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Control
-            as="textarea"
-            rows="10"
-            col="30"
-            disabled
-            value={text}
-          ></Form.Control>
+          <div className="filteredText" dangerouslySetInnerHTML={text}></div>
         </Form.Group>
       </Form>
     </div>
