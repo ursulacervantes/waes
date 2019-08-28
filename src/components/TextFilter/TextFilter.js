@@ -21,7 +21,7 @@ const TextFilter = props => {
         return s + '<br/>';
       }, '');
 
-      return obj + t + '<br/>';
+      return obj + t + (t === '' ? '' : '<br/>');
     }, '');
   };
 
@@ -31,12 +31,13 @@ const TextFilter = props => {
     return { __html: filter(text) };
   };
 
-  let filteredText = useSelector(state => filterByColor(state.text));
-
   const updateFilter = color => {
     setColorList(color);
     filterByColor(store.getState().text);
   };
+
+  //This is declared at the end because filterByColor needs to be declare first
+  let filteredText = useSelector(state => filterByColor(state.text));
 
   return (
     <div>

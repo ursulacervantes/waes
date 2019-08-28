@@ -1,5 +1,5 @@
 import text from './text';
-import { ADD_TEXT } from '../actions/index';
+import { ADD_TEXT, CLEAR_TEXT } from '../actions/index';
 
 const state = {
   red: {},
@@ -50,6 +50,17 @@ describe('color reducer', () => {
       yellow: {
         30: 'slap the dog because cats rule.'
       },
+      green: {}
+    });
+  });
+
+  it('should clear text and return initial state', () => {
+    const action = {
+      type: CLEAR_TEXT
+    };
+    expect(text(state, action)).toEqual({
+      red: {},
+      yellow: {},
       green: {}
     });
   });

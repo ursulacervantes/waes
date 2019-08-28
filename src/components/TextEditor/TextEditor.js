@@ -5,15 +5,15 @@ import Form from 'react-bootstrap/Form';
 import ColorPicker from '../ColorPicker';
 import './TextEditor.scss';
 
-import { addText } from '../../actions/index';
+import { addText, clearText } from '../../actions/index';
 import BinaryIndexedTree from '../../util/binaryIndexedTree';
-
-const ua = window.navigator.userAgent.toLowerCase();
-const isIE = !!ua.match(/msie|trident\/7|edge/);
+import { isIE } from '../../util/userAgent';
 
 let bt;
 
 function applyHighlights(markup, text, start, end, selection, color) {
+  if (!text.length) return text;
+
   const range = bt.getRangeSum(0, start);
 
   if (!markup) markup = text;
@@ -32,7 +32,7 @@ function applyHighlights(markup, text, start, end, selection, color) {
     text = text.replace(/ /g, ' <wbr>');
   }
 
-  bt.set(start, ('<mark class="h' + color).length + 2);
+  bt.set(start, ('<mark class="h' + color).length + 2); // +2 because of closing tag -> ">
   bt.set(end, '</mark>'.length);
 
   return markup;
@@ -79,6 +79,14 @@ const TextEditor = props => {
     backdrop.current.scrollTo(scrollLeft, scrollTop);
   };
 
+  const updateContent = e => {
+    //If text is updated, we need to creat a new binaryIndexedTree and clear
+    //current highlighted text
+    bt = undefined;
+    dispatch(clearText());
+    setHighlights(state => ({ __html: '' }));
+  };
+
   return (
     <div className="editorContainer">
       <ColorPicker
@@ -102,6 +110,7 @@ const TextEditor = props => {
             className="editorTextarea"
             onSelect={e => selectText(e)}
             onScroll={onScroll}
+            onChange={updateContent}
           />
         </Form.Group>
       </Form>
