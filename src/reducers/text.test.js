@@ -2,17 +2,22 @@ import text from './text';
 import { ADD_TEXT, FILTER_TEXT } from '../actions/index';
 
 const state = {
-  editor: {
-    red: {},
-    yellow: {},
-    green: {}
-  },
-  filter: {}
+  red: {},
+  yellow: {},
+  green: {}
 };
 
 describe('color reducer', () => {
   it('should return the initial state', () => {
     expect(text(undefined, {})).toEqual(state);
+  });
+
+  it('should return same state when no action', () => {
+    expect(text(state, undefined)).toEqual({
+      red: {},
+      yellow: {},
+      green: {}
+    });
   });
 
   it('should add text highlighted with red', () => {
@@ -23,37 +28,15 @@ describe('color reducer', () => {
       position: 10
     };
     expect(text(state, action)).toEqual({
-      editor: {
-        red: {
-          'Catty ipsum need to chase tail spill litter box.': [10]
-        },
-        yellow: {},
-        green: {}
+      red: {
+        10: 'Catty ipsum need to chase tail spill litter box.'
       },
-      filter: {}
+      yellow: {},
+      green: {}
     });
   });
 
-  it('should add deplicated text', () => {
-    const action = {
-      type: ADD_TEXT,
-      color: 'red',
-      text: 'Catty ipsum need to chase tail spill litter box.',
-      position: 0
-    };
-    expect(text(state, action)).toEqual({
-      editor: {
-        red: {
-          'Catty ipsum need to chase tail spill litter box.': [10, 0]
-        },
-        yellow: {},
-        green: {}
-      },
-      filter: {}
-    });
-  });
-
-  it('should add deplicated text', () => {
+  it('should add text highlighted with yellow', () => {
     const action = {
       type: ADD_TEXT,
       color: 'yellow',
@@ -61,82 +44,13 @@ describe('color reducer', () => {
       position: 30
     };
     expect(text(state, action)).toEqual({
-      editor: {
-        red: {
-          'Catty ipsum need to chase tail spill litter box.': [10, 0]
-        },
-        yellow: {
-          'slap the dog because cats rule.': [30]
-        },
-        green: {}
+      red: {
+        10: 'Catty ipsum need to chase tail spill litter box.'
       },
-      filter: {}
-    });
-  });
-
-  it('should filter text by red', () => {
-    const action = {
-      type: FILTER_TEXT,
-      color: ['red']
-    };
-    expect(text(state, action)).toEqual({
-      editor: {
-        red: {
-          'Catty ipsum need to chase tail spill litter box.': [10, 0]
-        },
-        yellow: {
-          'slap the dog because cats rule.': [30]
-        },
-        green: {}
+      yellow: {
+        30: 'slap the dog because cats rule.'
       },
-      filter: {
-        red: [
-          {
-            position: 0,
-            text: 'Catty ipsum need to chase tail spill litter box.'
-          },
-          {
-            position: 10,
-            text: 'Catty ipsum need to chase tail spill litter box.'
-          }
-        ]
-      }
-    });
-  });
-
-  it('should filter text by red and yellow', () => {
-    const action = {
-      type: FILTER_TEXT,
-      color: ['red', 'yellow']
-    };
-    expect(text(state, action)).toEqual({
-      editor: {
-        red: {
-          'Catty ipsum need to chase tail spill litter box.': [10, 0]
-        },
-        yellow: {
-          'slap the dog because cats rule.': [30]
-        },
-        green: {}
-      },
-      filter: {
-        red: [
-          {
-            position: 0,
-            text: 'Catty ipsum need to chase tail spill litter box.'
-          },
-          {
-            position: 10,
-            text: 'Catty ipsum need to chase tail spill litter box.'
-          }
-        ],
-        yellow: [
-          {
-            position: 30,
-            text: 'slap the dog because cats rule.'
-          }
-        ]
-      }
+      green: {}
     });
   });
 });

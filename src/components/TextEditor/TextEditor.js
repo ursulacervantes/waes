@@ -1,6 +1,5 @@
 import React, { useState, createRef } from 'react';
-import { findDOMNode } from 'react-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Form from 'react-bootstrap/Form';
 import ColorPicker from '../ColorPicker';
@@ -32,7 +31,6 @@ const TextEditor = props => {
   const backdrop = createRef();
   const dispatch = useDispatch();
 
-  // let editorText = useSelector(state => state.text);
   const [highlights, setHighlights] = useState({ __html: '' });
   const [color, setColor] = useState([]);
 

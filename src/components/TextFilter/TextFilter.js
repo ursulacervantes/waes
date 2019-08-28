@@ -1,32 +1,41 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import Form from 'react-bootstrap/Form';
 import ColorPicker from '../ColorPicker';
+import { store } from '../../store';
 
-import { filterText } from '../../actions/index';
 import './TextFilter.scss';
 
 const TextFilter = props => {
-  const [text, setText] = useState({ __html: '' });
-  let filteredText = useSelector(state => state.text);
+  const [colorList, setColorList] = useState([]);
 
-  const dispatch = useDispatch();
-
-  const filterByColor = color => {
-    dispatch(filterText(color));
-
-    const list = Object.entries(filteredText.filter).reduce((obj, val) => {
+  const filter = text => {
+    return Object.entries(text).reduce((obj, val) => {
       const [color, textList] = [val[0], val[1]];
-      const t = textList.reduce((s, v) => {
-        s += '<mark class="filter h' + color + '">' + v.text + '</mark>';
+
+      if (!colorList.includes(color)) return obj;
+
+      const t = Object.entries(textList).reduce((s, v) => {
+        s += '<mark class="filter h' + color + '">' + v[1] + '</mark>';
         return s + '<br/>';
       }, '');
 
       return obj + t + '<br/>';
     }, '');
+  };
 
-    setText(() => ({ __html: list }));
+  const filterByColor = text => {
+    if (!colorList.length) return { __html: '' };
+
+    return { __html: filter(text) };
+  };
+
+  let filteredText = useSelector(state => filterByColor(state.text));
+
+  const updateFilter = color => {
+    setColorList(color);
+    filterByColor(store.getState().text);
   };
 
   return (
@@ -34,12 +43,15 @@ const TextFilter = props => {
       <ColorPicker
         singlePick={false}
         colorId="filter"
-        setColor={filterByColor}
+        setColor={updateFilter}
       ></ColorPicker>
 
       <Form>
         <Form.Group controlId="exampleForm.ControlTextarea1">
-          <div className="filteredText" dangerouslySetInnerHTML={text}></div>
+          <div
+            className="filteredText"
+            dangerouslySetInnerHTML={filteredText}
+          ></div>
         </Form.Group>
       </Form>
     </div>
