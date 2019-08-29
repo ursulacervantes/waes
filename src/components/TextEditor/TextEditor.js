@@ -11,6 +11,7 @@ import { isIE } from '../../util/userAgent';
 
 let bt;
 
+// Generate text with <mark></mark> around highlighted substring
 function applyHighlights(markup, text, start, end, selection, color) {
   if (!text.length) return text;
 
@@ -49,6 +50,7 @@ const TextEditor = props => {
     e.persist();
     if (!color.length) return;
 
+    //if color is selected and bt does not exist, create a new BIT with text length
     if (!bt) bt = new BinaryIndexedTree(e.target.value.length + 1);
 
     const start = e.target.selectionStart;
@@ -57,8 +59,10 @@ const TextEditor = props => {
     if (start !== end) {
       const selection = e.target.value.substring(start, end);
 
+      //Get selection substring and add it to our store
       dispatch(addText(color, selection, start));
 
+      //update backdrop content
       setHighlights(state => ({
         __html: applyHighlights(
           state.__html,
@@ -72,6 +76,7 @@ const TextEditor = props => {
     }
   };
 
+  // Update backdrop scroll position when textarea scroll position changes
   const handleScroll = e => {
     const scrollTop = e.target.scrollTop;
     const scrollLeft = e.target.scrollLeft;

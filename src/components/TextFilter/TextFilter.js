@@ -14,6 +14,7 @@ const TextFilter = props => {
     return Object.entries(text).reduce((obj, val) => {
       const [color, textList] = [val[0], val[1]];
 
+      //if color is in our current color list (selected color), show it
       if (!colorList.includes(color)) return obj;
 
       const t = Object.entries(textList).reduce((s, v) => {
@@ -33,6 +34,7 @@ const TextFilter = props => {
 
   const updateFilter = color => {
     setColorList(color);
+    //if color is selected, get text list from store and show it
     filterByColor(store.getState().text);
   };
 
