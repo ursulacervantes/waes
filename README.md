@@ -30,6 +30,11 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
+
+## Demo
+
+![](public/assignment.gif)
+
 ## Components
 
 Following components were used in this app
@@ -71,6 +76,7 @@ Every time that a substring is highlighted, the index on the generated text will
 
 ## Future Improvements
 
+- Update `highlights div` scroll position
 - Remove highlighted text
 - Highlight partial word with two colors
 - Edit text and keep previous highlighted text
