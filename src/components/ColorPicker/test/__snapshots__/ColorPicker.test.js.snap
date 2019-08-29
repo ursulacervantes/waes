@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Color Picker select multiple colors 1`] = `
+<div>
+  <div
+    className="btn-toolbar"
+    role="toolbar"
+  >
+    <button
+      className="button red  btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+    <button
+      className="button yellow  btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+    <button
+      className="button green  btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`Color Picker select multiple colors 2`] = `
+<div>
+  <div
+    className="btn-toolbar"
+    role="toolbar"
+  >
+    <button
+      className="button red focus btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+    <button
+      className="button yellow  btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+    <button
+      className="button green  btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`Color Picker select multiple colors 3`] = `
+<div>
+  <div
+    className="btn-toolbar"
+    role="toolbar"
+  >
+    <button
+      className="button red focus btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+    <button
+      className="button yellow focus btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+    <button
+      className="button green  btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`Color Picker select only one color 1`] = `
+<div>
+  <div
+    className="btn-toolbar"
+    role="toolbar"
+  >
+    <button
+      className="button red  btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+    <button
+      className="button yellow  btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+    <button
+      className="button green  btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`Color Picker select only one color 2`] = `
+<div>
+  <div
+    className="btn-toolbar"
+    role="toolbar"
+  >
+    <button
+      className="button red focus btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+    <button
+      className="button yellow  btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+    <button
+      className="button green  btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`Color Picker select only one color 3`] = `
+<div>
+  <div
+    className="btn-toolbar"
+    role="toolbar"
+  >
+    <button
+      className="button red  btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+    <button
+      className="button yellow focus btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+    <button
+      className="button green  btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    />
+  </div>
+</div>
+`;

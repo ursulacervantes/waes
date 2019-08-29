@@ -48,7 +48,7 @@ const TextFilter = props => {
       ></ColorPicker>
 
       <Form>
-        <Form.Group controlId="exampleForm.ControlTextarea1">
+        <Form.Group>
           <div
             className="filteredText"
             dangerouslySetInnerHTML={filteredText}

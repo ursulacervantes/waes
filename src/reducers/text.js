@@ -18,7 +18,6 @@ export default function text(state = initialState, action) {
         state[val.color] = {};
         return state;
       }, {});
-      debugger;
       return state;
     default:
       return state;
